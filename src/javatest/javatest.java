@@ -31,7 +31,7 @@ public class javatest {
 		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(elementToWait)));
 	}
 
-	//@Test
+	@Test
 	public void asset() {
 		driver.get(baseUrl);
 		driver.findElement(By.className("login")).click();
@@ -78,7 +78,7 @@ public class javatest {
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	@Test
+	//@Test
 	public void login(){
 		driver.get(baseUrl);
 		driver.findElement(By.className("login")).click();
@@ -88,7 +88,7 @@ public class javatest {
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	@Test
+	//@Test
 	public void addCart(){
 		driver.get(baseUrl);
 		myDynamicElement = driver.findElement(By.id("homefeatured"));
