@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="8003" started-at="2017-06-21T05:32:00Z" finished-at="2017-06-21T05:32:08Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="8003" started-at="2017-06-21T05:32:00Z" finished-at="2017-06-21T05:32:08Z">
+      <class name="javatest.javatest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:javatest.javatest@573f2bb1]" name="beforeTest" is-config="true" duration-ms="3910" started-at="2017-06-20T23:32:00Z" finished-at="2017-06-20T23:32:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="addCart()[pri:0, instance:javatest.javatest@573f2bb1]" name="addCart" duration-ms="4067" started-at="2017-06-20T23:32:04Z" finished-at="2017-06-20T23:32:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addCart -->
+        <test-method status="PASS" signature="close()[pri:0, instance:javatest.javatest@573f2bb1]" name="close" is-config="true" duration-ms="0" started-at="2017-06-20T23:32:08Z" finished-at="2017-06-20T23:32:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- javatest.javatest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
