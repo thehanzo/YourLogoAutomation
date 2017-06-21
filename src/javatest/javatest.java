@@ -78,7 +78,7 @@ public class javatest {
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	//@Test
+	@Test
 	public void login(){
 		driver.get(baseUrl);
 		driver.findElement(By.className("login")).click();
