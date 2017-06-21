@@ -2,8 +2,10 @@ package javatest;
 
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,19 +26,31 @@ public class javatest {
 	public void beforeTest() {
 		driver = new ChromeDriver();
 		//driver.get(baseUrl);
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 	}
 	
 	public void explicitIdWait (String elementToWait){
 		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(elementToWait)));
 	}
 
-	@Test
-	public void asset() {
+	//@Test
+	public void signIn() {
 		driver.get(baseUrl);
+		String os = System.getProperty("os.name").toLowerCase();
+		System.out.printf(os);
+		
+		if(os.equals("mac os x")){
+			String currentWindowHandle = this.driver.getWindowHandle();
+			//run your javascript and alert code
+			((JavascriptExecutor)this.driver).executeScript("alert('Test')"); 
+			this.driver.switchTo().alert().accept();
+			//Switch back to to the window using the handle saved earlier
+			this.driver.switchTo().window(currentWindowHandle);
+		}
 		driver.findElement(By.className("login")).click();
-		driver.findElement(By.id("email_create")).sendKeys("joseeqr@gmail.com");
+		driver.findElement(By.id("email_create")).sendKeys("jose.q@3.com");
 		driver.findElement(By.name("SubmitCreate")).click();
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//WebElement myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("id_gender1")));
 		explicitIdWait("id_gender1");
 		driver.findElement(By.id("id_gender1")).click();
@@ -44,9 +58,9 @@ public class javatest {
 		driver.findElement(By.id("customer_lastname")).sendKeys("Quesada");
 		myDynamicElement = driver.findElement(By.id("email"));
 		
-		if(myDynamicElement.getText().equals("joseeqr@gmail.com") != true){
+		if(myDynamicElement.getText().equals("jose.q@3.com") != true){
 			myDynamicElement.clear();
-			myDynamicElement.sendKeys("joseeqr@gmail.com");
+			myDynamicElement.sendKeys("jose.q@3.com");
 		}
 		
 		driver.findElement(By.id("passwd")).sendKeys("123456");
@@ -78,9 +92,10 @@ public class javatest {
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	//@Test
+	@Test
 	public void login(){
 		driver.get(baseUrl);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("login")).click();
 		driver.findElement(By.id("email")).sendKeys("joseeqr@gmail.com");
 		driver.findElement(By.id("passwd")).sendKeys("123456");
@@ -88,7 +103,7 @@ public class javatest {
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	//@Test
+	@Test
 	public void addCart(){
 		driver.get(baseUrl);
 		myDynamicElement = driver.findElement(By.id("homefeatured"));
