@@ -33,7 +33,7 @@ public class javatest {
 		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(elementToWait)));
 	}
 
-	//@Test
+	@Test
 	public void signIn() {
 		driver.get(baseUrl);
 		String os = System.getProperty("os.name").toLowerCase();
@@ -48,7 +48,7 @@ public class javatest {
 			this.driver.switchTo().window(currentWindowHandle);
 		}
 		driver.findElement(By.className("login")).click();
-		driver.findElement(By.id("email_create")).sendKeys("jose.q@3.com");
+		driver.findElement(By.id("email_create")).sendKeys("jose.q@4.com");
 		driver.findElement(By.name("SubmitCreate")).click();
 		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//WebElement myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("id_gender1")));
@@ -57,10 +57,14 @@ public class javatest {
 		driver.findElement(By.id("customer_firstname")).sendKeys("Jose");
 		driver.findElement(By.id("customer_lastname")).sendKeys("Quesada");
 		myDynamicElement = driver.findElement(By.id("email"));
+		if (myDynamicElement.getText() == ""){
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}
+		System.out.printf(myDynamicElement.getAttribute("value"));
 		
-		if(myDynamicElement.getText().equals("jose.q@3.com") != true){
+		if(myDynamicElement.getText().equals("jose.q@4.com") != true){
 			myDynamicElement.clear();
-			myDynamicElement.sendKeys("jose.q@3.com");
+			myDynamicElement.sendKeys("jose.q@4.com");
 		}
 		
 		driver.findElement(By.id("passwd")).sendKeys("123456");
@@ -88,11 +92,11 @@ public class javatest {
 		driver.findElement(By.id("phone_mobile")).sendKeys("123456789");
 		driver.findElement(By.id("alias")).clear();
 		driver.findElement(By.id("alias")).sendKeys("ST address");
-		driver.findElement(By.id("submitAccount")).click();
-		driver.findElement(By.className("logout")).click();
+		//driver.findElement(By.id("submitAccount")).click();
+		//driver.findElement(By.className("logout")).click();
 	}
 	
-	@Test
+	//@Test
 	public void login(){
 		driver.get(baseUrl);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -103,7 +107,7 @@ public class javatest {
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	@Test
+	//@Test
 	public void addCart(){
 		driver.get(baseUrl);
 		myDynamicElement = driver.findElement(By.id("homefeatured"));
