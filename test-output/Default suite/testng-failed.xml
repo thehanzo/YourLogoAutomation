@@ -5,8 +5,8 @@
     <classes>
       <class name="javatest.javatest">
         <methods>
+          <include name="signIn"/>
           <include name="beforeTest"/>
-          <include name="addCart"/>
           <include name="close"/>
         </methods>
       </class> <!-- javatest.javatest -->

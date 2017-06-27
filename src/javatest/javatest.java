@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,7 +17,9 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
+
 public class javatest {
+	//System.setProperty("WebDriver.Chrome.driver", "\drivers\windows");
 	public String baseUrl = "http://automationpractice.com/index.php";
 	public WebDriver driver;
 	public WebElement myDynamicElement;
@@ -24,7 +27,8 @@ public class javatest {
 
 	@BeforeTest
 	public void beforeTest() {
-		driver = new ChromeDriver();
+		//driver = new ChromeDriver();
+		driver = new FirefoxDriver();
 		//driver.get(baseUrl);
 		//driver.manage().window().maximize();
 	}

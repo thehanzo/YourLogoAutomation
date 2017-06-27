@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="12841" started-at="2017-06-22T16:12:16Z" finished-at="2017-06-22T16:12:29Z">
+  <suite name="Default suite" duration-ms="14623" started-at="2017-06-27T04:19:22Z" finished-at="2017-06-27T04:19:37Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="12841" started-at="2017-06-22T16:12:16Z" finished-at="2017-06-22T16:12:29Z">
+    <test name="Default test" duration-ms="14623" started-at="2017-06-27T04:19:22Z" finished-at="2017-06-27T04:19:37Z">
       <class name="javatest.javatest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:javatest.javatest@5d5eef3d]" name="beforeTest" is-config="true" duration-ms="1920" started-at="2017-06-22T10:12:16Z" finished-at="2017-06-22T10:12:18Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:javatest.javatest@48eff760]" name="beforeTest" is-config="true" duration-ms="4265" started-at="2017-06-26T22:19:22Z" finished-at="2017-06-26T22:19:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="signIn()[pri:0, instance:javatest.javatest@5d5eef3d]" name="signIn" duration-ms="10897" started-at="2017-06-22T10:12:18Z" finished-at="2017-06-22T10:12:29Z">
+        <test-method status="PASS" signature="signIn()[pri:0, instance:javatest.javatest@48eff760]" name="signIn" duration-ms="10341" started-at="2017-06-26T22:19:27Z" finished-at="2017-06-26T22:19:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- signIn -->
-        <test-method status="PASS" signature="close()[pri:0, instance:javatest.javatest@5d5eef3d]" name="close" is-config="true" duration-ms="0" started-at="2017-06-22T10:12:29Z" finished-at="2017-06-22T10:12:29Z">
+        <test-method status="PASS" signature="close()[pri:0, instance:javatest.javatest@48eff760]" name="close" is-config="true" duration-ms="0" started-at="2017-06-26T22:19:37Z" finished-at="2017-06-26T22:19:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
