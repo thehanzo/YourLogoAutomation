@@ -9,12 +9,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.AfterTest;
 
 
@@ -26,9 +28,29 @@ public class javatest {
 	public Select dropdown;
 
 	@BeforeTest
+	@Parameters("browser")
+	public void setup(String browser) throws Exception{
+		if(browser.equalsIgnoreCase("firefox")){
+			driver = new FirefoxDriver();
+		}
+		else if(browser.equalsIgnoreCase("chrome")){
+			driver = new ChromeDriver();
+		}
+		else if(browser.equalsIgnoreCase("Edge")){
+			//set path to Edge.exe
+			System.setProperty("webdriver.edge.driver",".\\MicrosoftWebDriver.exe");
+			//create Edge instance
+			driver = new EdgeDriver();
+		}
+else{
+	//If no browser passed throw exception
+	throw new Exception("Browser is not correct");
+}
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
 	public void beforeTest() {
 		//driver = new ChromeDriver();
-		driver = new FirefoxDriver();
+		//driver = new FirefoxDriver();
 		//driver.get(baseUrl);
 		//driver.manage().window().maximize();
 	}
@@ -36,7 +58,9 @@ public class javatest {
 	public void explicitIdWait (String elementToWait){
 		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(elementToWait)));
 	}
-
+	
+	
+	
 	@Test
 	public void signIn() {
 		driver.get(baseUrl);
@@ -66,7 +90,7 @@ public class javatest {
 		}
 		System.out.printf(myDynamicElement.getAttribute("value"));
 		
-		if(myDynamicElement.getText().equals("jose.q@4.com") != true){
+		if(myDynamicElement.getAttribute("value").equals("jose.q@4.com") != true){
 			myDynamicElement.clear();
 			myDynamicElement.sendKeys("jose.q@4.com");
 		}
