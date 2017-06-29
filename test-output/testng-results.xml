@@ -1,87 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="1" failed="0" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="27" started-at="2017-06-28T03:37:45Z" finished-at="2017-06-28T03:37:45Z">
+  <suite name="Default suite" duration-ms="14300" started-at="2017-06-29T05:50:13Z" finished-at="2017-06-29T05:50:28Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="27" started-at="2017-06-28T03:37:45Z" finished-at="2017-06-28T03:37:45Z">
+    <test name="Default test" duration-ms="14300" started-at="2017-06-29T05:50:13Z" finished-at="2017-06-29T05:50:28Z">
       <class name="javatest.javatest">
-        <test-method status="FAIL" signature="setup(java.lang.String)[pri:0, instance:javatest.javatest@573f2bb1]" name="setup" is-config="true" duration-ms="0" started-at="2017-06-27T21:37:45Z" finished-at="2017-06-27T21:37:45Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Parameter 'browser' is required by BeforeTest on method setup but has not been marked @Optional or defined
-in C:\Users\Jose\AppData\Local\Temp\testng-eclipse-1065162603\testng-customsuite.xml]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Parameter 'browser' is required by BeforeTest on method setup but has not been marked @Optional or defined
-in C:\Users\Jose\AppData\Local\Temp\testng-eclipse-1065162603\testng-customsuite.xml
-	at org.testng.internal.Parameters.createParameters(Parameters.java:199)
-	at org.testng.internal.Parameters.createParameters(Parameters.java:443)
-	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:118)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:206)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:146)
-	at org.testng.TestRunner.beforeRun(TestRunner.java:626)
-	at org.testng.TestRunner.run(TestRunner.java:594)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
-	at org.testng.TestNG.runSuites(TestNG.java:1144)
-	at org.testng.TestNG.run(TestNG.java:1115)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:javatest.javatest@48eff760]" name="beforeTest" is-config="true" duration-ms="2461" started-at="2017-06-28T23:50:13Z" finished-at="2017-06-28T23:50:16Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method status="SKIP" signature="signIn()[pri:0, instance:javatest.javatest@573f2bb1]" name="signIn" duration-ms="1" started-at="2017-06-27T21:37:45Z" finished-at="2017-06-27T21:37:45Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Parameter 'browser' is required by BeforeTest on method setup but has not been marked @Optional or defined
-in C:\Users\Jose\AppData\Local\Temp\testng-eclipse-1065162603\testng-customsuite.xml]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Parameter 'browser' is required by BeforeTest on method setup but has not been marked @Optional or defined
-in C:\Users\Jose\AppData\Local\Temp\testng-eclipse-1065162603\testng-customsuite.xml
-	at org.testng.internal.Parameters.createParameters(Parameters.java:199)
-	at org.testng.internal.Parameters.createParameters(Parameters.java:443)
-	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:118)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:206)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:146)
-	at org.testng.TestRunner.beforeRun(TestRunner.java:626)
-	at org.testng.TestRunner.run(TestRunner.java:594)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
-	at org.testng.TestNG.runSuites(TestNG.java:1144)
-	at org.testng.TestNG.run(TestNG.java:1115)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="login()[pri:2, instance:javatest.javatest@48eff760]" name="login" duration-ms="7577" started-at="2017-06-28T23:50:16Z" finished-at="2017-06-28T23:50:23Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- signIn -->
-        <test-method status="SKIP" signature="close()[pri:0, instance:javatest.javatest@573f2bb1]" name="close" is-config="true" duration-ms="0" started-at="2017-06-27T21:37:45Z" finished-at="2017-06-27T21:37:45Z">
+        </test-method> <!-- login -->
+        <test-method status="PASS" signature="addCart()[pri:3, instance:javatest.javatest@48eff760]" name="addCart" duration-ms="4247" started-at="2017-06-28T23:50:23Z" finished-at="2017-06-28T23:50:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addCart -->
+        <test-method status="PASS" signature="close()[pri:0, instance:javatest.javatest@48eff760]" name="close" is-config="true" duration-ms="0" started-at="2017-06-28T23:50:28Z" finished-at="2017-06-28T23:50:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->

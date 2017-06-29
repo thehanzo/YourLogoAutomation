@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="YourLogo" thread-count="2" parallel="tests">
+<suite name="javatest" thread-count="2" parallel="tests">
+  
   <test name="ChromeTest">
   <parameter name="browser" value="Chrome"/>
-    <classes>      <class name="javatest.javatest">
+    <classes>
+      <class name="javatest.javatest">
       </class>
     </classes>
   </test>
+  
   <test name="FirefoxTest">
   <parameter name="browser" value="Firefox"/>
-    <classes>      <class name="javatest.javatest">
+    <classes>
+      <class name="javatest.javatest">
       </class>
     </classes>
   </test>
+  
 </suite>

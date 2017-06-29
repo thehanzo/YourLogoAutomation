@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,53 +22,79 @@ import org.testng.annotations.AfterTest;
 
 
 public class javatest {
-	//System.setProperty("WebDriver.Chrome.driver", "\drivers\windows");
+	//set variable baseurl for ease of access
 	public String baseUrl = "http://automationpractice.com/index.php";
+	//Sets "driver" as a variable for WebDriver for ease of use
 	public WebDriver driver;
+	//dynamic Element for reusability
 	public WebElement myDynamicElement;
+	//dynamic Select for reusability
 	public Select dropdown;
 
+	//Preconditions to run before the Test
 	@BeforeTest
+/*
+ 	//Parameters is used by the testing.xml to run parallel tests, identifies which browser is working on, so it can create the Driver
+	//Receives "browser" variable from the .xml file
 	@Parameters("browser")
 	public void setup(String browser) throws Exception{
 		if(browser.equalsIgnoreCase("firefox")){
+			//System.setProperty("webdriver.firefox.marionette", ".\\geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 		else if(browser.equalsIgnoreCase("chrome")){
+			//System.setProperty("webdriver.chrome.driver",".\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}
 		else if(browser.equalsIgnoreCase("Edge")){
 			//set path to Edge.exe
-			System.setProperty("webdriver.edge.driver",".\\MicrosoftWebDriver.exe");
+			//System.setProperty("webdriver.edge.driver",".\\MicrosoftWebDriver.exe");
 			//create Edge instance
 			driver = new EdgeDriver();
 		}
 else{
 	//If no browser passed throw exception
 	throw new Exception("Browser is not correct");
+	//driver = new ChromeDriver();
 }
 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
+	
+*/
+	//Method that sets the Driver for non-parallel runs
 	public void beforeTest() {
-		//driver = new ChromeDriver();
+		//Creates the Driver
+		driver = new ChromeDriver();
 		//driver = new FirefoxDriver();
+		
+		//Redirects to the baseUrl
 		//driver.get(baseUrl);
+		
+		//maximizes the browser window
 		//driver.manage().window().maximize();
 	}
 	
+	//Reusable explicitly wait, using Element ID
 	public void explicitIdWait (String elementToWait){
 		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id(elementToWait)));
 	}
+	//Reusable explicitly wait, using Partial Text
+	public void explicitPartialTextWait (String elementToWait){
+		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(elementToWait)));
+	}
 	
-	
-	
-	@Test
+	//Sets the method as a test for the Driver to run. 
+	//Priority is set, so the Driver runs the test in the specified priority-based order
+	//@Test(priority=1)
+	//This test will Register a new user to the application
 	public void signIn() {
 		driver.get(baseUrl);
 		String os = System.getProperty("os.name").toLowerCase();
 		System.out.printf(os);
 		
+		//Mac does not allow for an automated window to gain focus. This instruction helps get the window focus if the OS is Mac
 		if(os.equals("mac os x")){
+			//Sets the current window handle
 			String currentWindowHandle = this.driver.getWindowHandle();
 			//run your javascript and alert code
 			((JavascriptExecutor)this.driver).executeScript("alert('Test')"); 
@@ -78,18 +105,20 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("login")).click();
 		driver.findElement(By.id("email_create")).sendKeys("jose.q@4.com");
 		driver.findElement(By.name("SubmitCreate")).click();
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		//WebElement myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("id_gender1")));
+		//Waits for presence of "id_gender1" element
 		explicitIdWait("id_gender1");
 		driver.findElement(By.id("id_gender1")).click();
 		driver.findElement(By.id("customer_firstname")).sendKeys("Jose");
 		driver.findElement(By.id("customer_lastname")).sendKeys("Quesada");
 		myDynamicElement = driver.findElement(By.id("email"));
+		//Waits for the email to be present as it is auto-populated by the application.
 		if (myDynamicElement.getText() == ""){
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
+		//Prints the email value. For debug purposes
 		System.out.printf(myDynamicElement.getAttribute("value"));
-		
+		//If the auto-populated email is different from the user entered email. Replaces the wrong email with the user-entered one
+		//Unnecessary, used for testing purposes
 		if(myDynamicElement.getAttribute("value").equals("jose.q@4.com") != true){
 			myDynamicElement.clear();
 			myDynamicElement.sendKeys("jose.q@4.com");
@@ -97,6 +126,7 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		driver.findElement(By.id("passwd")).sendKeys("123456");
 		dropdown = new Select(driver.findElement(By.id("days")));
+		//Dropdown select using Value
 		dropdown.selectByValue("24");
 		dropdown = new Select(driver.findElement(By.id("months")));
 		dropdown.selectByValue("11");
@@ -104,6 +134,7 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		dropdown.selectByValue("1988");
 		driver.findElement(By.id("newsletter")).click();
 		driver.findElement(By.id("optin")).click();
+		//First and Last name are autopopulated
 		//driver.findElement(By.id("firstname")).sendKeys("Jose");
 		//driver.findElement(By.id("lastname")).sendKeys("Quesada");
 		driver.findElement(By.id("company")).sendKeys("Stateside");
@@ -111,9 +142,11 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.id("address2")).sendKeys("150mts norte El Pueblo");
 		driver.findElement(By.id("city")).sendKeys("Goicoechea");
 		dropdown = new Select(driver.findElement(By.id("id_state")));
+		//Dropdown select using Visible Text
 		dropdown.selectByVisibleText("Florida");
 		driver.findElement(By.id("postcode")).sendKeys("12345");
 		dropdown = new Select(driver.findElement(By.id("id_country")));
+		//Dropdown select using Index
 		dropdown.selectByIndex(1);
 		driver.findElement(By.id("other")).sendKeys("This is a really long form \nAnd this is a breakpoint");
 		driver.findElement(By.id("phone")).sendKeys("321654987");
@@ -124,9 +157,11 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//driver.findElement(By.className("logout")).click();
 	}
 	
-	//@Test
+	@Test(priority=2)
+	//This test will log in to the application using an existing account
 	public void login(){
 		driver.get(baseUrl);
+		//Waits for the page to load
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("login")).click();
 		driver.findElement(By.id("email")).sendKeys("joseeqr@gmail.com");
@@ -135,23 +170,37 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	//@Test
+	@Test(priority=3)
+	//This test will test the shopping cart functionality
 	public void addCart(){
 		driver.get(baseUrl);
+		//Gets the list of Featured products in order to access them
 		myDynamicElement = driver.findElement(By.id("homefeatured"));
 		List<WebElement> links = myDynamicElement.findElements(By.tagName("li"));
-		links.get(1).click();
-		links.get(1).findElement(By.linkText("Add to cart")).click();
-		//driver.switchTo().frame(links.get(1));
+		//By clicking on a specific product, app will redirect to the product's page
+		//links.get(1).click();
+		
+		//Actions sets focus on the featured products, so that the "Add to Cart" CTAs show.
+		Actions actions = new Actions(driver);
+		//Sets focus to the second item in the list
+		WebElement mainMenu = links.get(1);
+		actions.moveToElement(mainMenu);
+		//Adds item to cart
+		driver.findElement(By.linkText("Add to cart")).click();
+		//Waits for CTA to show
+		explicitPartialTextWait("Proceed to checkout");
+		driver.findElement(By.partialLinkText("Proceed to checkout")).click();
+		driver.findElement(By.partialLinkText("Proceed to checkout")).click();
 		//Example on how to use "links"
 		/*for (int i = 1; i < links.size(); i++)
 		{
 		    System.out.println(links.get(i).getText());
 		}*/
 	}
-
+	
 	@AfterTest
 	public void close() {
+		//Closes the browser
 		//driver.quit();
 	}
 
