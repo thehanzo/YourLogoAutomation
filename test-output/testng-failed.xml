@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [javatest]" parallel="tests">
+  <test name="FirefoxTest(failed)" parallel="tests">
+    <parameter name="browser" value="Firefox"/>
     <classes>
       <class name="javatest.javatest">
         <methods>
-          <include name="beforeTest"/>
-          <include name="addCart"/>
+          <include name="signIn"/>
           <include name="close"/>
+          <include name="setup"/>
         </methods>
       </class> <!-- javatest.javatest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- FirefoxTest(failed) -->
+</suite> <!-- Failed suite [javatest] -->

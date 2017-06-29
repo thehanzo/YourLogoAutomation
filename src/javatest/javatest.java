@@ -1,5 +1,10 @@
 package javatest;
-
+/*
+ * Things to do:
+ * Java reflection for Driver instancing
+ * Drivers should run regarless of the O.S.
+ * 
+ */
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +38,7 @@ public class javatest {
 
 	//Preconditions to run before the Test
 	@BeforeTest
-/*
+
  	//Parameters is used by the testing.xml to run parallel tests, identifies which browser is working on, so it can create the Driver
 	//Receives "browser" variable from the .xml file
 	@Parameters("browser")
@@ -60,11 +65,11 @@ else{
 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
-*/
+
 	//Method that sets the Driver for non-parallel runs
 	public void beforeTest() {
 		//Creates the Driver
-		driver = new ChromeDriver();
+		//driver = new ChromeDriver();
 		//driver = new FirefoxDriver();
 		
 		//Redirects to the baseUrl
@@ -85,7 +90,9 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	
 	//Sets the method as a test for the Driver to run. 
 	//Priority is set, so the Driver runs the test in the specified priority-based order
-	//@Test(priority=1)
+	
+	
+	@Test(priority=1)
 	//This test will Register a new user to the application
 	public void signIn() {
 		driver.get(baseUrl);
@@ -157,7 +164,7 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//driver.findElement(By.className("logout")).click();
 	}
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	//This test will log in to the application using an existing account
 	public void login(){
 		driver.get(baseUrl);
@@ -170,7 +177,7 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	@Test(priority=3)
+	//@Test(priority=3)
 	//This test will test the shopping cart functionality
 	public void addCart(){
 		driver.get(baseUrl);
