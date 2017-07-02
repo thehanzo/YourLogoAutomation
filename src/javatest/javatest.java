@@ -2,7 +2,7 @@ package javatest;
 /*
  * Things to do:
  * Java reflection for Driver instancing
- * Drivers should run regarless of the O.S.
+ * Drivers should run regardless of the O.S.
  * 
  */
 
@@ -17,6 +17,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Mouse;
+import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -41,7 +44,9 @@ public class javatest {
 
  	//Parameters is used by the testing.xml to run parallel tests, identifies which browser is working on, so it can create the Driver
 	//Receives "browser" variable from the .xml file
-	@Parameters("browser")
+	
+/*	
+ * @Parameters("browser")
 	public void setup(String browser) throws Exception{
 		if(browser.equalsIgnoreCase("firefox")){
 			//System.setProperty("webdriver.firefox.marionette", ".\\geckodriver.exe");
@@ -64,12 +69,12 @@ else{
 }
 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
-	
+*/	
 
 	//Method that sets the Driver for non-parallel runs
 	public void beforeTest() {
 		//Creates the Driver
-		//driver = new ChromeDriver();
+		driver = new ChromeDriver();
 		//driver = new FirefoxDriver();
 		
 		//Redirects to the baseUrl
@@ -87,12 +92,15 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	public void explicitPartialTextWait (String elementToWait){
 		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(elementToWait)));
 	}
+	public void explicitXpathWait (String elementToWait){
+		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementToWait)));
+	}
 	
 	//Sets the method as a test for the Driver to run. 
 	//Priority is set, so the Driver runs the test in the specified priority-based order
 	
 	
-	@Test(priority=1)
+	//@Test(priority=1)
 	//This test will Register a new user to the application
 	public void signIn() {
 		driver.get(baseUrl);
@@ -177,7 +185,7 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.className("logout")).click();
 	}
 	
-	//@Test(priority=3)
+	@Test(priority=3)
 	//This test will test the shopping cart functionality
 	public void addCart(){
 		driver.get(baseUrl);
@@ -194,21 +202,34 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		actions.moveToElement(mainMenu);
 		//Adds item to cart
 		driver.findElement(By.linkText("Add to cart")).click();
+
+		explicitXpathWait("//div[@id='layer_cart']");
+		mainMenu = driver.findElement(By.id("layer_cart"));
+		actions.moveToElement(mainMenu).perform();
+		actions.moveToElement(driver.findElement(By.cssSelector("span.cross"))).click().perform();
+		
+		//driver.findElement(By.cssSelector("span.cross")).click();
+		//driver.findElement(By.xpath("//*[@title='Close window']")).click();
 		//Waits for CTA to show
-		explicitPartialTextWait("Proceed to checkout");
-		driver.findElement(By.partialLinkText("Proceed to checkout")).click();
-		driver.findElement(By.partialLinkText("Proceed to checkout")).click();
-		//Example on how to use "links"
-		/*for (int i = 1; i < links.size(); i++)
-		{
-		    System.out.println(links.get(i).getText());
-		}*/
+		
+		//mainMenu = driver.findElement(By.className("shopping_cart"));
+		//actions.moveToElement(mainMenu).perform();
+		//actions.moveToElement(driver.findElement(By.partialLinkText("Check out"))).click().perform();
+
+		
+		//explicitPartialTextWait("Proceed to checkout");
+		//driver.findElement(By.partialLinkText("Proceed to checkout")).click();
+		//driver.findElement(By.partialLinkText("Proceed to checkout")).click();
 	}
 	
 	@AfterTest
 	public void close() {
 		//Closes the browser
 		//driver.quit();
+	}
+	
+	public void stupidShit(){
+		
 	}
 
 }
