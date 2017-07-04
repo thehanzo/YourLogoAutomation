@@ -95,6 +95,9 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	public void explicitXpathWait (String elementToWait){
 		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementToWait)));
 	}
+	public void explicitCssWait (String elementToWait){
+		myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(elementToWait)));
+	}
 	
 	//Sets the method as a test for the Driver to run. 
 	//Priority is set, so the Driver runs the test in the specified priority-based order
@@ -198,24 +201,22 @@ driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//Actions sets focus on the featured products, so that the "Add to Cart" CTAs show.
 		Actions actions = new Actions(driver);
 		//Sets focus to the second item in the list
-		WebElement mainMenu = links.get(1);
-		actions.moveToElement(mainMenu);
+		//WebElement mainMenu = links.get(1);
+		actions.moveToElement(links.get(1));
+		actions.moveToElement(driver.findElement(By.linkText("Add to cart"))).click().perform();
 		//Adds item to cart
-		driver.findElement(By.linkText("Add to cart")).click();
+		//driver.findElement(By.linkText("Add to cart")).click();
 
-		explicitXpathWait("//div[@id='layer_cart']");
+		//explicitXpathWait("//div[@id='layer_cart']");
+		/*
 		mainMenu = driver.findElement(By.id("layer_cart"));
 		actions.moveToElement(mainMenu).perform();
 		actions.moveToElement(driver.findElement(By.cssSelector("span.cross"))).click().perform();
+		*/
+		explicitCssWait("span.cross");
 		
-		//driver.findElement(By.cssSelector("span.cross")).click();
-		//driver.findElement(By.xpath("//*[@title='Close window']")).click();
-		//Waits for CTA to show
-		
-		//mainMenu = driver.findElement(By.className("shopping_cart"));
-		//actions.moveToElement(mainMenu).perform();
-		//actions.moveToElement(driver.findElement(By.partialLinkText("Check out"))).click().perform();
-
+		driver.findElement(By.cssSelector("span.cross")).click();
+		driver.findElement(By.cssSelector("a[title=\"View my shopping cart\"]")).click();
 		
 		//explicitPartialTextWait("Proceed to checkout");
 		//driver.findElement(By.partialLinkText("Proceed to checkout")).click();
